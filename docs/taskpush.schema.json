@@ -1,0 +1,587 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/MarchSnow-1/TaskPush/main/docs/taskpush.schema.json",
+  "title": "TaskPush configuration",
+  "description": "TaskPush configuration. settings is required for enabled channels; the runtime enforces that, the schema keeps it optional so disabled channels may omit it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["channels"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Optional editor schema URL; ignored at runtime."
+    },
+    "version": {
+      "type": "integer",
+      "const": 1,
+      "default": 1
+    },
+    "timeout": {
+      "$ref": "#/$defs/duration",
+      "description": "Per-request HTTP timeout, e.g. 15s."
+    },
+    "retries": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Retries after the first attempt. 0 means no retry."
+    },
+    "retryDelay": {
+      "$ref": "#/$defs/duration",
+      "description": "Fixed delay between retries, e.g. 2s."
+    },
+    "proxy": {
+      "type": "string",
+      "description": "Empty = direct; env = use HTTP_PROXY/HTTPS_PROXY; otherwise an http(s) proxy URL."
+    },
+    "channels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/channel"
+      }
+    }
+  },
+  "$defs": {
+    "duration": {
+      "type": "string",
+      "pattern": "^(0|([0-9]+(\\.[0-9]+)?(ns|us|µs|ms|s|m|h))+)$"
+    },
+    "stringList": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "intOrString": {
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "boolOrString": {
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "channelCommon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
+        },
+        "type": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "timeout": {
+          "$ref": "#/$defs/duration"
+        },
+        "retries": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "retryDelay": {
+          "$ref": "#/$defs/duration"
+        },
+        "settings": {
+          "type": "object"
+        }
+      }
+    },
+    "webhookBody": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format"],
+      "properties": {
+        "format": {
+          "enum": ["json", "text", "form"]
+        },
+        "json": {},
+        "text": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "contentType": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "format": {
+                "const": "json"
+              }
+            },
+            "required": ["format"]
+          },
+          "then": {
+            "required": ["json"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "format": {
+                "const": "text"
+              }
+            },
+            "required": ["format"]
+          },
+          "then": {
+            "required": ["text"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "format": {
+                "const": "form"
+              }
+            },
+            "required": ["format"]
+          },
+          "then": {
+            "required": ["fields"]
+          }
+        }
+      ]
+    },
+    "webhookSettings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url"],
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string",
+          "default": "POST"
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "body": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/webhookBody"
+            }
+          ]
+        },
+        "maskSecrets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "barkSettings": {
+      "type": "object",
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "required": ["token"]
+        },
+        {
+          "required": ["tokens"]
+        }
+      ],
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "tokens": {
+          "$ref": "#/$defs/stringList"
+        },
+        "server": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        },
+        "sound": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "clickUrl": {
+          "type": "string"
+        },
+        "copy": {
+          "type": "string"
+        },
+        "badge": {
+          "$ref": "#/$defs/intOrString"
+        },
+        "ttl": {
+          "$ref": "#/$defs/intOrString"
+        },
+        "autoCopy": {
+          "$ref": "#/$defs/boolOrString"
+        }
+      }
+    },
+    "telegramSettings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["token", "chatIds"],
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "chatIds": {
+          "$ref": "#/$defs/stringList"
+        },
+        "apiBase": {
+          "type": "string"
+        },
+        "silent": {
+          "$ref": "#/$defs/boolOrString"
+        }
+      }
+    },
+    "serverchanSettings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["token"],
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "tags": {
+          "$ref": "#/$defs/stringList"
+        },
+        "short": {
+          "type": "string"
+        },
+        "channels": {
+          "$ref": "#/$defs/stringList"
+        },
+        "openids": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "dingtalkSettings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url"],
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        },
+        "msgType": {
+          "enum": ["text", "markdown"]
+        },
+        "atAll": {
+          "$ref": "#/$defs/boolOrString"
+        }
+      }
+    },
+    "wecomSettings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url"],
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "msgType": {
+          "enum": ["text", "markdown"]
+        }
+      }
+    },
+    "discordSettings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url"],
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "ntfySettings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url"],
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "priority": {
+          "$ref": "#/$defs/intOrString"
+        },
+        "tags": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "gotifySettings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "token"],
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "priority": {
+          "$ref": "#/$defs/intOrString"
+        }
+      }
+    },
+    "channelWebhook": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/channelCommon"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "webhook"
+            },
+            "settings": {
+              "$ref": "#/$defs/webhookSettings"
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    "channelBark": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/channelCommon"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "bark"
+            },
+            "settings": {
+              "$ref": "#/$defs/barkSettings"
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    "channelTelegram": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/channelCommon"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "telegram"
+            },
+            "settings": {
+              "$ref": "#/$defs/telegramSettings"
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    "channelServerchan": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/channelCommon"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "serverchan"
+            },
+            "settings": {
+              "$ref": "#/$defs/serverchanSettings"
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    "channelDingtalk": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/channelCommon"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "dingtalk"
+            },
+            "settings": {
+              "$ref": "#/$defs/dingtalkSettings"
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    "channelWecom": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/channelCommon"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "wecom"
+            },
+            "settings": {
+              "$ref": "#/$defs/wecomSettings"
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    "channelDiscord": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/channelCommon"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "discord"
+            },
+            "settings": {
+              "$ref": "#/$defs/discordSettings"
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    "channelNtfy": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/channelCommon"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "ntfy"
+            },
+            "settings": {
+              "$ref": "#/$defs/ntfySettings"
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    "channelGotify": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/channelCommon"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "gotify"
+            },
+            "settings": {
+              "$ref": "#/$defs/gotifySettings"
+            }
+          },
+          "required": ["type"]
+        }
+      ]
+    },
+    "channel": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/channelWebhook"
+        },
+        {
+          "$ref": "#/$defs/channelBark"
+        },
+        {
+          "$ref": "#/$defs/channelTelegram"
+        },
+        {
+          "$ref": "#/$defs/channelServerchan"
+        },
+        {
+          "$ref": "#/$defs/channelDingtalk"
+        },
+        {
+          "$ref": "#/$defs/channelWecom"
+        },
+        {
+          "$ref": "#/$defs/channelDiscord"
+        },
+        {
+          "$ref": "#/$defs/channelNtfy"
+        },
+        {
+          "$ref": "#/$defs/channelGotify"
+        }
+      ]
+    }
+  }
+}

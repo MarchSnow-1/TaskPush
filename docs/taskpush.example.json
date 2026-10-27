@@ -1,0 +1,112 @@
+{
+  "$schema": "./taskpush.schema.json",
+  "version": 1,
+  "timeout": "15s",
+  "retries": 2,
+  "retryDelay": "1s",
+  "proxy": "",
+  "channels": [
+    {
+      "id": "ops-webhook",
+      "type": "webhook",
+      "enabled": true,
+      "settings": {
+        "url": "${HOOK_URL}",
+        "method": "POST",
+        "headers": {
+          "X-Token": "${HOOK_TOKEN}"
+        },
+        "body": {
+          "format": "json",
+          "json": {
+            "title": "{{title}}",
+            "text": "{{body}}",
+            "sent_at": "{{datetime}}"
+          }
+        }
+      }
+    },
+    {
+      "id": "phone",
+      "type": "bark",
+      "enabled": true,
+      "settings": {
+        "token": "${BARK_TOKEN}",
+        "group": "ci",
+        "level": "active",
+        "clickUrl": "https://example.com/build/example"
+      }
+    },
+    {
+      "id": "tg",
+      "type": "telegram",
+      "enabled": true,
+      "settings": {
+        "token": "${TG_TOKEN}",
+        "chatIds": ["${TG_CHAT_ID}"],
+        "silent": false
+      }
+    },
+    {
+      "id": "serverchan",
+      "type": "serverchan",
+      "enabled": true,
+      "settings": {
+        "token": "${SERVERCHAN_TOKEN}",
+        "tags": ["ci", "build"],
+        "short": "{{title}}"
+      }
+    },
+    {
+      "id": "dingtalk",
+      "type": "dingtalk",
+      "enabled": true,
+      "settings": {
+        "url": "${DINGTALK_WEBHOOK}",
+        "secret": "${DINGTALK_SECRET}",
+        "msgType": "text",
+        "atAll": false
+      }
+    },
+    {
+      "id": "wecom",
+      "type": "wecom",
+      "enabled": true,
+      "settings": {
+        "url": "${WECOM_WEBHOOK}",
+        "msgType": "text"
+      }
+    },
+    {
+      "id": "discord",
+      "type": "discord",
+      "enabled": true,
+      "settings": {
+        "url": "${DISCORD_WEBHOOK}",
+        "username": "TaskPush",
+        "avatarUrl": "https://example.com/avatar.png"
+      }
+    },
+    {
+      "id": "ntfy",
+      "type": "ntfy",
+      "enabled": true,
+      "settings": {
+        "url": "https://ntfy.example.com/taskpush",
+        "token": "${NTFY_TOKEN}",
+        "priority": "high",
+        "tags": ["ci", "build"]
+      }
+    },
+    {
+      "id": "gotify",
+      "type": "gotify",
+      "enabled": true,
+      "settings": {
+        "url": "https://gotify.example.com",
+        "token": "${GOTIFY_TOKEN}",
+        "priority": 5
+      }
+    }
+  ]
+}
