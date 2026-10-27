@@ -1,0 +1,19 @@
+{
+  "channel.dingtalk.desc": "Push messages to a DingTalk group robot, with optional signing and @all",
+  "channel.dingtalk.default_markdown_title": "Notification",
+  "channel.dingtalk.field.url.desc": "Full robot webhook address; it has to carry a non-empty access_token and supports a template",
+  "channel.dingtalk.field.secret.desc": "Signing secret starting with SEC; the request is not signed when it is left empty",
+  "channel.dingtalk.field.msgType.desc": "Message type, text (default) or markdown, compared without regard to case",
+  "channel.dingtalk.field.atAll.desc": "Mention everyone; it applies to a text message alone and markdown refuses it",
+  "channel.dingtalk.error.missing_url": "url is required",
+  "channel.dingtalk.error.missing_access_token": "the DingTalk webhook url carries no access_token value",
+  "channel.dingtalk.error.invalid_url": "{{.URL}} is not a valid webhook address",
+  "channel.dingtalk.error.invalid_msg_type": "{{.Type}} is not a valid msgType, want text or markdown",
+  "channel.dingtalk.error.empty_content": "title and body are both empty",
+  "channel.dingtalk.error.empty_markdown_body": "a markdown message needs a body, so pass one with --body",
+  "channel.dingtalk.error.at_all_markdown": "atAll is not allowed with msgType markdown, use msgType text instead",
+  "channel.dingtalk.error.api_code": "the platform rejected the request with code {{.Code}}: {{.Message}}",
+  "channel.dingtalk.error.bad_response": "the DingTalk response could not be read: {{.Detail}}",
+  "channel.dingtalk.warn.truncated": "message content was cut at the {{.Limit}} byte limit",
+  "channel.dingtalk.preview.message": "dingtalk: {{.MsgType}}, {{.Targets}} message"
+}

@@ -1,0 +1,15 @@
+{
+  "channel.gotify.desc": "Send messages through a self-hosted Gotify server",
+  "channel.gotify.field.url.desc": "server root address, supporting templates; /message is appended when the path does not already end with it",
+  "channel.gotify.field.token.desc": "application token sent in the X-Gotify-Key header, supporting templates",
+  "channel.gotify.field.priority.desc": "message priority from 0 to 10, supporting templates; sent only when supplied",
+  "channel.gotify.error.missing_url": "url is required",
+  "channel.gotify.error.missing_token": "token is required",
+  "channel.gotify.error.invalid_url": "invalid Gotify URL {{.URL}}",
+  "channel.gotify.error.invalid_token": "the token holds a control character the HTTP header cannot carry",
+  "channel.gotify.error.empty_content": "the body is empty and no title is available as a fallback",
+  "channel.gotify.error.invalid_priority": "priority must be a whole number from 0 to 10, got {{.Value}}",
+  "channel.gotify.error.http_status": "the Gotify server replied with status {{.Status}}: {{.Body}}",
+  "channel.gotify.warn.truncated": "the message was cut at the {{.Limit}} character limit",
+  "channel.gotify.preview.message": "gotify: 1 message ({{.Host}}, {{.Bytes}} bytes)"
+}

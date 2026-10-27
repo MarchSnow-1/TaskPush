@@ -1,0 +1,13 @@
+{
+  "template.error.syntax": "template syntax error at {{.Path}}: {{.Detail}}",
+  "template.error.unclosed": "template tag {{.Tag}} at {{.Path}} is not closed",
+  "template.error.stray_else": "template has an else tag outside a block at {{.Path}}",
+  "template.error.stray_end": "template has an end tag outside a block at {{.Path}}",
+  "template.error.unsupported_expr": "unsupported template expression {{.Expr}} at {{.Path}} (comparisons, arithmetic and function calls are not supported)",
+  "template.error.too_large": "template at {{.Path}} exceeds the {{.Limit}} size limit",
+  "template.error.nesting": "template at {{.Path}} nests deeper than {{.Limit}} levels",
+  "template.error.unresolved": "template at {{.Path}} references unresolved variable {{.Variable}}",
+  "template.error.reserved_var": "variable {{.Variable}} at {{.Path}} is reserved and cannot be defined with --var or a vars file",
+  "template.warn.unresolved": "template at {{.Path}} references unresolved variable {{.Variable}} (kept as written)",
+  "template.warn.truncated": "rendered output at {{.Path}} exceeds {{.Limit}} and was truncated"
+}

@@ -1,0 +1,16 @@
+{
+  "channel.ntfy.desc": "Send plain-text messages to an ntfy topic over HTTP",
+  "channel.ntfy.field.url.desc": "Full topic address, for example https://ntfy.example.com/topic; the last path segment is the topic",
+  "channel.ntfy.field.token.desc": "Bearer token sent as an Authorization header; omitted when it renders empty",
+  "channel.ntfy.field.priority.desc": "Message priority, 1 to 5 or min, low, default, high, max; sent as a Priority header only when set",
+  "channel.ntfy.field.tags.desc": "Tags sent as a Tags header, given as a list or a comma-separated string",
+  "channel.ntfy.error.missing_url": "url is required and has to point at a topic",
+  "channel.ntfy.error.invalid_url": "{{.URL}} is not a valid ntfy address",
+  "channel.ntfy.error.missing_topic": "the url has no topic, which is the last path segment",
+  "channel.ntfy.error.empty_content": "title and body are both empty",
+  "channel.ntfy.error.invalid_priority": "{{.Value}} is not a valid priority, want 1 to 5 or min, low, default, high, max",
+  "channel.ntfy.error.invalid_header": "the value of the {{.Name}} header holds a control character",
+  "channel.ntfy.error.http_status": "the ntfy server answered with status {{.Status}}: {{.Body}}",
+  "channel.ntfy.warn.truncated": "message body was cut at the {{.Limit}} byte limit",
+  "channel.ntfy.preview.message": "ntfy: topic {{.Topic}} ({{.Bytes}} bytes, 4096 byte limit)"
+}

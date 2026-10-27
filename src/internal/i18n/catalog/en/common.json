@@ -1,0 +1,12 @@
+{
+  "common.error.empty_url": "{{.Field}} is empty",
+  "common.error.invalid_url": "{{.Field}} is not a valid http or https URL",
+  "common.error.missing_host": "{{.Field}} has no host",
+  "common.error.http_status": "the server replied with status {{.Status}}: {{.Body}}",
+  "common.error.body_too_large": "the response body is larger than the {{.Limit}} limit",
+  "common.error.bad_json": "{{.Field}} is not valid JSON: {{.Detail}}",
+  "common.error.business_code": "the platform returned code {{.Code}}: {{.Message}}",
+  "common.error.bad_response": "{{.Field}} is missing or malformed in the response: {{.Detail}}",
+  "common.error.request_failed": "the request failed: {{.Detail}}",
+  "common.warn.body_too_large": "the response body was cut at the {{.Limit}} limit"
+}

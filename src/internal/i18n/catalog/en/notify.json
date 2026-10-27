@@ -1,0 +1,10 @@
+{
+  "notify.error.no_channels": "no channel is selected for sending",
+  "notify.error.var_file": "cannot read the vars file {{.Path}}: {{.Detail}}",
+  "notify.error.var": "invalid --var {{.Value}}: {{.Reason}}",
+  "notify.error.reserved_var": "variable {{.Variable}} is reserved and cannot be set through --var or --var-file",
+  "notify.error.title_render": "title rendering failed: {{.Detail}}",
+  "notify.error.body_render": "body rendering failed: {{.Detail}}",
+  "notify.error.client": "cannot build the HTTP client: {{.Detail}}",
+  "notify.error.canceled": "sending was canceled"
+}

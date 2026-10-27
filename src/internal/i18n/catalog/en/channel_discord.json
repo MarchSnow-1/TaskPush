@@ -1,0 +1,13 @@
+{
+  "channel.discord.desc": "Send messages through a Discord channel webhook",
+  "channel.discord.field.url.desc": "Channel webhook address; its token stays in the request only",
+  "channel.discord.field.username.desc": "Display name overriding the webhook name; omitted when it renders empty",
+  "channel.discord.field.avatarUrl.desc": "Avatar address overriding the webhook avatar; checked as an http/https URL when non-empty",
+  "channel.discord.error.missing_url": "url is required",
+  "channel.discord.error.invalid_url": "{{.URL}} is not a valid webhook address",
+  "channel.discord.error.empty_content": "title and body are both empty",
+  "channel.discord.error.invalid_avatar_url": "{{.URL}} is not a valid avatar address",
+  "channel.discord.error.http_status": "the webhook answered with status {{.Status}}: {{.Body}}",
+  "channel.discord.warn.truncated": "message content was cut at the {{.Limit}} UTF-16 code unit limit",
+  "channel.discord.preview.message": "discord: {{.Targets}} message (2000 UTF-16 units max)"
+}

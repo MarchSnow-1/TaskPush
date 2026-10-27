@@ -1,0 +1,12 @@
+{
+  "state.error.missing": "状态文件不存在: {{.Path}}; 请先运行 start",
+  "state.error.parse": "状态文件解析失败: {{.Path}}; {{.Detail}}",
+  "state.error.invalid": "状态文件没有可用的计时起点: {{.Path}}",
+  "state.error.version": "状态文件 {{.Path}} 的版本是 {{.Version}}, 本构建只支持版本 1",
+  "state.error.write": "状态文件写入失败: {{.Path}}; {{.Detail}}; 请检查父目录, 或用 --state-file 指定其他位置",
+  "state.error.remove": "状态文件删除失败: {{.Path}}; {{.Detail}}",
+  "state.warn.future": "计时起点 {{.Time}} 在未来, 耗时按 0 计",
+  "state.info.overwritten": "已存在的状态文件将被覆盖: {{.Path}}",
+  "state.info.written": "计时起点 {{.Time}} 已写入 {{.Path}}",
+  "state.info.kept": "状态文件保留在 {{.Path}}"
+}

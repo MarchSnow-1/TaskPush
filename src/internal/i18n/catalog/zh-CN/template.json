@@ -1,0 +1,13 @@
+{
+  "template.error.syntax": "模板在 {{.Path}} 处存在语法错误: {{.Detail}}",
+  "template.error.unclosed": "模板标签 {{.Tag}} 在 {{.Path}} 处未闭合",
+  "template.error.stray_else": "模板在 {{.Path}} 处出现块外的 else 标记",
+  "template.error.stray_end": "模板在 {{.Path}} 处出现块外的 end 标记",
+  "template.error.unsupported_expr": "模板在 {{.Path}} 处使用了不支持的表达式 {{.Expr}} (不支持比较、算术与函数调用)",
+  "template.error.too_large": "模板在 {{.Path}} 处超过 {{.Limit}} 大小上限",
+  "template.error.nesting": "模板在 {{.Path}} 处嵌套超过 {{.Limit}} 层",
+  "template.error.unresolved": "模板在 {{.Path}} 处引用了未解析变量 {{.Variable}}",
+  "template.error.reserved_var": "变量 {{.Variable}} 是保留名, 不能通过 --var 或变量文件定义 (位于 {{.Path}})",
+  "template.warn.unresolved": "模板在 {{.Path}} 处引用了未解析变量 {{.Variable}} (已按原文保留)",
+  "template.warn.truncated": "模板在 {{.Path}} 处渲染输出超过 {{.Limit}}, 已截断"
+}

@@ -1,0 +1,19 @@
+{
+  "channel.dingtalk.desc": "推送到钉钉群机器人, 支持可选加签与 @所有人",
+  "channel.dingtalk.default_markdown_title": "通知",
+  "channel.dingtalk.field.url.desc": "机器人完整地址, 必须含非空 access_token, 支持模板",
+  "channel.dingtalk.field.secret.desc": "以 SEC 开头的加签密钥, 留空则不加签",
+  "channel.dingtalk.field.msgType.desc": "消息类型, text (默认) 或 markdown, 判定不区分大小写",
+  "channel.dingtalk.field.atAll.desc": "@所有人, 只在 text 下生效, markdown 下会报错",
+  "channel.dingtalk.error.missing_url": "必须配置 url",
+  "channel.dingtalk.error.missing_access_token": "钉钉机器人地址里没有 access_token 取值",
+  "channel.dingtalk.error.invalid_url": "{{.URL}} 不是合法的机器人地址",
+  "channel.dingtalk.error.invalid_msg_type": "{{.Type}} 不是合法的 msgType, 只允许 text 或 markdown",
+  "channel.dingtalk.error.empty_content": "标题与正文都为空",
+  "channel.dingtalk.error.empty_markdown_body": "markdown 消息必须有正文, 请用 --body 传入",
+  "channel.dingtalk.error.at_all_markdown": "msgType 为 markdown 时不允许 atAll, 请改用 msgType text",
+  "channel.dingtalk.error.api_code": "平台以错误码 {{.Code}} 拒绝了请求: {{.Message}}",
+  "channel.dingtalk.error.bad_response": "无法解析钉钉响应: {{.Detail}}",
+  "channel.dingtalk.warn.truncated": "消息内容超过 {{.Limit}} 字节上限, 已截断",
+  "channel.dingtalk.preview.message": "dingtalk: {{.MsgType}}, {{.Targets}} 条消息"
+}

@@ -1,0 +1,12 @@
+{
+  "state.error.missing": "no state file at {{.Path}}; run start first",
+  "state.error.parse": "cannot parse the state file {{.Path}}: {{.Detail}}",
+  "state.error.invalid": "the state file {{.Path}} holds no usable start time",
+  "state.error.version": "the state file {{.Path}} uses version {{.Version}}, while this build supports version 1 only",
+  "state.error.write": "cannot write the state file {{.Path}}: {{.Detail}}; check the parent directory or pass --state-file to choose another location",
+  "state.error.remove": "cannot remove the state file {{.Path}}: {{.Detail}}",
+  "state.warn.future": "the start time {{.Time}} is in the future; elapsed time is reported as 0",
+  "state.info.overwritten": "an existing state file at {{.Path}} will be overwritten",
+  "state.info.written": "start time {{.Time}} written to {{.Path}}",
+  "state.info.kept": "state file kept at {{.Path}}"
+}

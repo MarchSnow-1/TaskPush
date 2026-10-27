@@ -1,0 +1,15 @@
+{
+  "channel.serverchan.desc": "通过 ServerChan SC3 或 Turbo 发送消息",
+  "channel.serverchan.field.token.desc": "SendKey; sctp 开头的 key 选择 SC3, 其它 key 选择 Turbo",
+  "channel.serverchan.field.tags.desc": "SC3 标签; 数组或逗号分隔字符串会以竖线连接",
+  "channel.serverchan.field.short.desc": "卡片简短描述, 支持模板",
+  "channel.serverchan.field.channels.desc": "SC3 消息通道; 数组或逗号分隔字符串会以竖线连接",
+  "channel.serverchan.field.openids.desc": "接收抄送的 SC3 openid; 数组或逗号分隔字符串会以竖线连接",
+  "channel.serverchan.error.missing_token": "必须配置 token",
+  "channel.serverchan.error.invalid_sc3_key": "SC3 SendKey {{.TokenMasked}} 不符合 sctp<uid>t... 形态",
+  "channel.serverchan.error.empty_title": "必须提供标题, ServerChan 不接受空标题",
+  "channel.serverchan.error.api_code": "平台返回错误码 {{.Code}}: {{.Message}}",
+  "channel.serverchan.error.bad_response": "无法读取 ServerChan 响应: {{.Detail}}",
+  "channel.serverchan.warn.title_truncated": "Turbo 标题超过 {{.Limit}} 字符上限, 已截断",
+  "channel.serverchan.preview.message": "serverchan: {{.Mode}}"
+}

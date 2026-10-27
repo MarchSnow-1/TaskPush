@@ -1,0 +1,15 @@
+{
+  "channel.telegram.desc": "Send messages through a Telegram bot",
+  "channel.telegram.field.token.desc": "Bot token used in the URL path; it does not go into the request body",
+  "channel.telegram.field.chatIds.desc": "One or more chat ids receiving the message",
+  "channel.telegram.field.apiBase.desc": "Bot API base address, defaulting to https://api.telegram.org and usable for a self-hosted reverse proxy",
+  "channel.telegram.field.silent.desc": "Send without a notification sound",
+  "channel.telegram.error.missing_token": "token is required",
+  "channel.telegram.error.missing_chat_ids": "at least one chat id is required",
+  "channel.telegram.error.empty_content": "title and body are both empty",
+  "channel.telegram.error.invalid_api_base": "{{.URL}} is not a valid API base address",
+  "channel.telegram.error.api_error": "the platform rejected the request with code {{.Code}}: {{.Description}}",
+  "channel.telegram.error.bad_response": "the Telegram response could not be read: {{.Detail}}",
+  "channel.telegram.warn.truncated": "message content was cut at the {{.Limit}} UTF-16 code unit limit",
+  "channel.telegram.preview.message": "telegram: {{.Targets}} chats"
+}

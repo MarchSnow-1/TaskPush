@@ -1,0 +1,4 @@
+{
+  "channel.error.unknown_type": "未知渠道类型 {{.Type}} (可用: {{.Available}})",
+  "channel.error.invalid_settings": "配置项 {{.Field}} 无效: {{.Detail}}"
+}

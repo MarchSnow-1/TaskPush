@@ -1,0 +1,14 @@
+{
+  "channel.wecom.desc": "通过企微群机器人推送消息",
+  "channel.wecom.field.url.desc": "群机器人完整 webhook 地址, 必须带 key query 参数",
+  "channel.wecom.field.msgType.desc": "消息类型, 可选 text 或 markdown, 默认 text",
+  "channel.wecom.error.missing_url": "必须配置 url",
+  "channel.wecom.error.missing_key": "url 必须带非空的 key query 参数",
+  "channel.wecom.error.invalid_url": "{{.URL}} 不是合法的 webhook 地址",
+  "channel.wecom.error.invalid_msg_type": "{{.Type}} 不是支持的消息类型, 请使用 text 或 markdown",
+  "channel.wecom.error.empty_content": "标题与正文都为空",
+  "channel.wecom.error.api_code": "平台以错误码 {{.Code}} 拒绝了请求: {{.Message}}",
+  "channel.wecom.error.bad_response": "无法解析企业微信响应: {{.Detail}}",
+  "channel.wecom.warn.truncated": "消息内容超过 {{.Limit}} 字节, 已截断",
+  "channel.wecom.preview.message": "wecom: {{.MsgType}}, {{.Targets}} 条消息"
+}

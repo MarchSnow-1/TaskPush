@@ -1,0 +1,15 @@
+{
+  "channel.serverchan.desc": "Send messages through ServerChan SC3 or Turbo",
+  "channel.serverchan.field.token.desc": "SendKey; a key starting with sctp selects SC3 and any other key selects Turbo",
+  "channel.serverchan.field.tags.desc": "SC3 tags; an array or a comma-separated string is joined with a pipe",
+  "channel.serverchan.field.short.desc": "Short card description, with template support",
+  "channel.serverchan.field.channels.desc": "SC3 message channels; an array or a comma-separated string is joined with a pipe",
+  "channel.serverchan.field.openids.desc": "SC3 openids receiving a copy; an array or a comma-separated string is joined with a pipe",
+  "channel.serverchan.error.missing_token": "token is required",
+  "channel.serverchan.error.invalid_sc3_key": "the SC3 SendKey {{.TokenMasked}} does not match sctp<uid>t...",
+  "channel.serverchan.error.empty_title": "title is required because ServerChan does not accept an empty title",
+  "channel.serverchan.error.api_code": "the platform returned code {{.Code}}: {{.Message}}",
+  "channel.serverchan.error.bad_response": "the ServerChan response could not be read: {{.Detail}}",
+  "channel.serverchan.warn.title_truncated": "the Turbo title was cut at the {{.Limit}} character limit",
+  "channel.serverchan.preview.message": "serverchan: {{.Mode}}"
+}

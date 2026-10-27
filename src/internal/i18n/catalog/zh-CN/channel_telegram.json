@@ -1,0 +1,15 @@
+{
+  "channel.telegram.desc": "通过 Telegram 机器人推送消息",
+  "channel.telegram.field.token.desc": "机器人 token, 只拼进 URL 路径, 不进入请求体",
+  "channel.telegram.field.chatIds.desc": "接收消息的一个或多个 chat id",
+  "channel.telegram.field.apiBase.desc": "Bot API 基础地址, 默认 https://api.telegram.org, 也可填自建反向代理",
+  "channel.telegram.field.silent.desc": "静默发送, 不产生提示音",
+  "channel.telegram.error.missing_token": "必须配置 token",
+  "channel.telegram.error.missing_chat_ids": "至少需要一个 chat id",
+  "channel.telegram.error.empty_content": "标题与正文都为空",
+  "channel.telegram.error.invalid_api_base": "{{.URL}} 不是合法的 API 基础地址",
+  "channel.telegram.error.api_error": "平台以错误码 {{.Code}} 拒绝了请求: {{.Description}}",
+  "channel.telegram.error.bad_response": "无法解析 Telegram 响应: {{.Detail}}",
+  "channel.telegram.warn.truncated": "消息内容超过 {{.Limit}} 个 UTF-16 单元, 已截断",
+  "channel.telegram.preview.message": "telegram: {{.Targets}} 个 chat"
+}

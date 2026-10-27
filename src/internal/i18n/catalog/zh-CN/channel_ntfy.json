@@ -1,0 +1,16 @@
+{
+  "channel.ntfy.desc": "向 ntfy topic 推送纯文本消息",
+  "channel.ntfy.field.url.desc": "含 topic 的完整地址, 如 https://ntfy.example.com/topic, path 末段即 topic",
+  "channel.ntfy.field.token.desc": "以 Authorization header 发送的 Bearer token, 渲染后为空时不发送",
+  "channel.ntfy.field.priority.desc": "消息优先级, 1 到 5 或 min, low, default, high, max, 仅显式配置时发送 Priority header",
+  "channel.ntfy.field.tags.desc": "以 Tags header 发送的标签, 可写数组或逗号分隔字符串",
+  "channel.ntfy.error.missing_url": "必须配置指向 topic 的 url",
+  "channel.ntfy.error.invalid_url": "{{.URL}} 不是合法的 ntfy 地址",
+  "channel.ntfy.error.missing_topic": "url 缺少 topic, topic 是 path 的最后一段",
+  "channel.ntfy.error.empty_content": "标题与正文都为空",
+  "channel.ntfy.error.invalid_priority": "{{.Value}} 不是合法的优先级, 应为 1 到 5 或 min, low, default, high, max",
+  "channel.ntfy.error.invalid_header": "{{.Name}} header 的值含有控制字符",
+  "channel.ntfy.error.http_status": "ntfy 服务返回状态码 {{.Status}}: {{.Body}}",
+  "channel.ntfy.warn.truncated": "消息正文超过 {{.Limit}} 字节, 已截断",
+  "channel.ntfy.preview.message": "ntfy: topic {{.Topic}} ({{.Bytes}} 字节, 上限 4096 字节)"
+}

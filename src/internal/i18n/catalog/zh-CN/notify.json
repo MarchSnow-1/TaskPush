@@ -1,0 +1,10 @@
+{
+  "notify.error.no_channels": "没有可发送的渠道",
+  "notify.error.var_file": "变量文件读取失败: {{.Path}}; {{.Detail}}",
+  "notify.error.var": "无效的 --var {{.Value}}: {{.Reason}}",
+  "notify.error.reserved_var": "变量 {{.Variable}} 是保留名, 不能通过 --var 或 --var-file 定义",
+  "notify.error.title_render": "标题渲染失败: {{.Detail}}",
+  "notify.error.body_render": "正文渲染失败: {{.Detail}}",
+  "notify.error.client": "HTTP 客户端构造失败: {{.Detail}}",
+  "notify.error.canceled": "发送已取消"
+}

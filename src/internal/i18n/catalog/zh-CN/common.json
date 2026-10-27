@@ -1,0 +1,12 @@
+{
+  "common.error.empty_url": "{{.Field}} 为空",
+  "common.error.invalid_url": "{{.Field}} 不是合法的 http 或 https 地址",
+  "common.error.missing_host": "{{.Field}} 缺少主机名",
+  "common.error.http_status": "服务端返回状态码 {{.Status}}: {{.Body}}",
+  "common.error.body_too_large": "响应体超过 {{.Limit}} 上限",
+  "common.error.bad_json": "{{.Field}} 不是合法 JSON: {{.Detail}}",
+  "common.error.business_code": "平台返回业务码 {{.Code}}: {{.Message}}",
+  "common.error.bad_response": "响应中的 {{.Field}} 缺失或格式错误: {{.Detail}}",
+  "common.error.request_failed": "请求失败: {{.Detail}}",
+  "common.warn.body_too_large": "响应体已在 {{.Limit}} 上限处截断"
+}

@@ -1,0 +1,13 @@
+{
+  "channel.discord.desc": "通过 Discord 频道 Webhook 推送消息",
+  "channel.discord.field.url.desc": "频道 Webhook 地址, token 只进入请求",
+  "channel.discord.field.username.desc": "覆盖显示名, 渲染后为空时不发送",
+  "channel.discord.field.avatarUrl.desc": "覆盖头像地址, 非空时按 http/https 地址校验",
+  "channel.discord.error.missing_url": "必须配置 url",
+  "channel.discord.error.invalid_url": "{{.URL}} 不是合法的 Webhook 地址",
+  "channel.discord.error.empty_content": "标题与正文都为空",
+  "channel.discord.error.invalid_avatar_url": "{{.URL}} 不是合法的头像地址",
+  "channel.discord.error.http_status": "Webhook 返回状态码 {{.Status}}: {{.Body}}",
+  "channel.discord.warn.truncated": "消息内容超过 {{.Limit}} 个 UTF-16 单元, 已截断",
+  "channel.discord.preview.message": "discord: {{.Targets}} 条消息 (上限 2000 个 UTF-16 单元)"
+}

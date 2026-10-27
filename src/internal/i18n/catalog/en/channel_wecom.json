@@ -1,0 +1,14 @@
+{
+  "channel.wecom.desc": "Send messages through a WeCom group bot",
+  "channel.wecom.field.url.desc": "Full webhook address of the group bot, which has to carry the key query parameter",
+  "channel.wecom.field.msgType.desc": "Message type, either text or markdown, defaulting to text",
+  "channel.wecom.error.missing_url": "url is required",
+  "channel.wecom.error.missing_key": "the url has to carry a non-empty key query parameter",
+  "channel.wecom.error.invalid_url": "{{.URL}} is not a valid webhook address",
+  "channel.wecom.error.invalid_msg_type": "{{.Type}} is not a supported message type, use text or markdown",
+  "channel.wecom.error.empty_content": "title and body are both empty",
+  "channel.wecom.error.api_code": "the platform rejected the request with code {{.Code}}: {{.Message}}",
+  "channel.wecom.error.bad_response": "the WeCom response could not be read: {{.Detail}}",
+  "channel.wecom.warn.truncated": "message content was cut at the {{.Limit}} byte limit",
+  "channel.wecom.preview.message": "wecom: {{.MsgType}}, {{.Targets}} message"
+}

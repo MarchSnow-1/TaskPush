@@ -1,0 +1,15 @@
+{
+  "channel.gotify.desc": "通过自建 Gotify 服务发送消息",
+  "channel.gotify.field.url.desc": "服务根地址, 支持模板; path 未以 /message 结尾时追加该段",
+  "channel.gotify.field.token.desc": "应用 token, 放在 X-Gotify-Key 请求头, 支持模板",
+  "channel.gotify.field.priority.desc": "消息优先级, 范围 0-10, 支持模板; 显式配置才发送",
+  "channel.gotify.error.missing_url": "必须配置 url",
+  "channel.gotify.error.missing_token": "必须配置 token",
+  "channel.gotify.error.invalid_url": "Gotify 地址非法 {{.URL}}",
+  "channel.gotify.error.invalid_token": "token 含 HTTP 请求头无法承载的控制字符",
+  "channel.gotify.error.empty_content": "正文为空, 且没有可用作回退的标题",
+  "channel.gotify.error.invalid_priority": "优先级必须是 0-10 的整数, 当前为 {{.Value}}",
+  "channel.gotify.error.http_status": "Gotify 服务返回状态 {{.Status}}: {{.Body}}",
+  "channel.gotify.warn.truncated": "消息超过 {{.Limit}} 字符上限, 已截断",
+  "channel.gotify.preview.message": "gotify: 1 条消息 ({{.Host}}, {{.Bytes}} 字节)"
+}

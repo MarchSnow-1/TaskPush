@@ -1,0 +1,4 @@
+{
+  "channel.error.unknown_type": "unknown channel type {{.Type}} (available: {{.Available}})",
+  "channel.error.invalid_settings": "invalid settings at {{.Field}}: {{.Detail}}"
+}
