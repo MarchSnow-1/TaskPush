@@ -1,0 +1,15 @@
+{
+  "name": "taskpush",
+  "version": "0.1.0",
+  "scripts": {
+    "version": "auto-changelog -p && git add CHANGELOG.md"
+  },
+  "keywords": [],
+  "author": "MarchSnow",
+  "license": "Apache-2.0",
+  "type": "commonjs",
+  "devDependencies": {
+    "auto-changelog": "^2.5.0",
+    "auto-changelog-plus": "^1.2.3"
+  }
+}
