@@ -1,0 +1,3 @@
+FIELD  TYPE    REQUIRED  DEFAULT  DESCRIPTION
+url    string  false              target URL, supporting templates
+fail   bool    true      false    request body as a string or an object

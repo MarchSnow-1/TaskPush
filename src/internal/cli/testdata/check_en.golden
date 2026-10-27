@@ -1,0 +1,3 @@
+ID      TYPE     STATUS  DETAIL
+ops     example  [OK]    POST https://example.com/redacted (text, 14 bytes)
+broken  example  [OK]    POST https://example.com/redacted (text, 14 bytes)

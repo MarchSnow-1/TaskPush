@@ -1,0 +1,25 @@
+Usage: taskpush [global flags] <command> [command flags]
+
+Send one notification to the selected channels
+
+Configuration mode: --config, TASKPUSH_CONFIG_JSON or ./taskpush.json supplies the channels
+  --config PATH                configuration path, - reads stdin
+  --channel ID                 target channel id, repeatable
+  --dry-run[=BOOL]             render and validate fully without sending
+  --parallel N                 concurrency between channels, 1-8, default 1
+
+Inline mode: --webhook, --type, --set or --payload builds one channel and ignores TASKPUSH_CONFIG_JSON
+  --webhook URL                build an inline webhook channel from a URL
+  --type TYPE                  build one inline channel of this type
+  --set KEY=VALUE              inline setting KEY=VALUE, repeatable
+  --payload JSON               inline webhook JSON body
+
+Content and variables:
+  --title TEXT                 title template, mutually exclusive with --title-file
+  --title-file PATH            read the title from a file, - reads stdin
+  --body TEXT                  body template, mutually exclusive with --body-file
+  --body-file PATH             read the body from a file, - reads stdin
+  --var KEY=VALUE              extra variable KEY=VALUE, repeatable
+  --var-file PATH              read variables from a JSON object file, - reads stdin
+
+See docs/usage.md and docs/taskpush.example.json

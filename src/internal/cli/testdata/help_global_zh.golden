@@ -1,0 +1,28 @@
+用法: taskpush [全局 flag] <命令> [命令 flag]
+
+命令:
+  send      推送一条通知
+  finish    推送计时结果并清理状态
+  start     记录计时起点
+  check     校验渠道, 不发送
+  list      列出已配置渠道
+  types     列出渠道类型或其字段
+  init      写一份最小配置
+  version   显示版本
+  help      显示帮助
+
+全局 flag:
+  --help, -h                   显示帮助, 命令之后显示该命令的帮助
+  --version                    显示版本
+  --lang LANG                  输出语言: en 或 zh-CN, 默认 en
+
+配置模式: 由 --config, TASKPUSH_CONFIG_JSON 或 ./taskpush.json 提供渠道
+内联模式: --webhook, --type, --set 或 --payload 构造一个渠道, 并忽略 TASKPUSH_CONFIG_JSON
+flag 可以写在命令前或命令后; -- 之后全部是位置参数; 命令后的 --help 显示该命令的帮助
+
+示例:
+  taskpush check --config taskpush.json
+  taskpush send --config taskpush.json --title example
+  taskpush send --webhook https://example.com/hook --payload {}
+
+详见 docs/usage.md 与 docs/taskpush.example.json

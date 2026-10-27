@@ -1,0 +1,28 @@
+Usage: taskpush [global flags] <command> [command flags]
+
+Commands:
+  send      send one notification
+  finish    send the timed result and clean up the state
+  start     record the start of a timed run
+  check     validate channels without sending
+  list      list configured channels
+  types     list channel types or their fields
+  init      write a minimal configuration
+  version   print the version
+  help      print help
+
+Global flags:
+  --help, -h                   show help, and after a command show that command's help
+  --version                    show the version
+  --lang LANG                  output language: en or zh-CN, default en
+
+Configuration mode: --config, TASKPUSH_CONFIG_JSON or ./taskpush.json supplies the channels
+Inline mode: --webhook, --type, --set or --payload builds one channel and ignores TASKPUSH_CONFIG_JSON
+Flags may appear before or after the command; everything after -- is a positional argument; --help after a command shows that command's help
+
+Examples:
+  taskpush check --config taskpush.json
+  taskpush send --config taskpush.json --title example
+  taskpush send --webhook https://example.com/hook --payload {}
+
+See docs/usage.md and docs/taskpush.example.json

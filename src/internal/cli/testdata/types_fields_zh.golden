@@ -1,0 +1,3 @@
+FIELD  TYPE    REQUIRED  DEFAULT  DESCRIPTION
+url    string  false              目标地址, 支持模板
+fail   bool    true      false    请求正文, 可以是字符串或对象

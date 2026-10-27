@@ -1,0 +1,25 @@
+用法: taskpush [全局 flag] <命令> [命令 flag]
+
+向选中的渠道推送一条通知
+
+配置模式: 由 --config, TASKPUSH_CONFIG_JSON 或 ./taskpush.json 提供渠道
+  --config PATH                配置路径, - 表示 stdin
+  --channel ID                 目标渠道 ID, 可重复
+  --dry-run[=BOOL]             完整渲染与校验, 不发送
+  --parallel N                 渠道间并发数, 1-8, 默认 1
+
+内联模式: --webhook, --type, --set 或 --payload 构造一个渠道, 并忽略 TASKPUSH_CONFIG_JSON
+  --webhook URL                用 URL 构造内联 webhook 渠道
+  --type TYPE                  构造该类型的单个内联渠道
+  --set KEY=VALUE              内联设置 KEY=VALUE, 可重复
+  --payload JSON               内联 webhook 的 JSON 正文
+
+内容与变量:
+  --title TEXT                 标题模板, 与 --title-file 互斥
+  --title-file PATH            从文件读取标题, - 表示 stdin
+  --body TEXT                  正文模板, 与 --body-file 互斥
+  --body-file PATH             从文件读取正文, - 表示 stdin
+  --var KEY=VALUE              额外变量 KEY=VALUE, 可重复
+  --var-file PATH              从 JSON 对象文件读取变量, - 表示 stdin
+
+详见 docs/usage.md 与 docs/taskpush.example.json
