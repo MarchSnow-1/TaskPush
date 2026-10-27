@@ -23,9 +23,12 @@ go.work
 /taskpush
 
 # CONFIG
-.taskpush-state.json
-config.json
-taskpush.json
+# 只锚定仓库根的运行时配置, 不加斜杠会连 src/internal/i18n/catalog 下的消息目录一起忽略
+# Anchored to the repository root: without the leading slash the pattern also hides the message
+# catalogs under src/internal/i18n/catalog
+/.taskpush-state.json
+/config.json
+/taskpush.json
 
 # NPM
 node_modules/
