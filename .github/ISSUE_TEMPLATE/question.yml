@@ -1,0 +1,54 @@
+name: "❓ Question / 提问"
+description: "Ask a question / 提出问题或咨询"
+title: "[Question] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > 📖 Before submitting feedback or suggestions, please check the [documentation](https://github.com/MarchSnow-1/TaskPush/blob/main/docs/usage.md) or [Issues](https://github.com/MarchSnow-1/TaskPush/issues) first to see if a similar topic already exists.
+        > 🔄 If you encounter an issue, please try updating to the latest version before reporting.
+        >
+        > 📖 在反馈问题或提出建议前，请先检查 [文档](https://github.com/MarchSnow-1/TaskPush/blob/main/docs/usage_zh-CN.md) 或 [Issues](https://github.com/MarchSnow-1/TaskPush/issues) 中是否存在相关内容
+        > 🔄 如遇问题，请先尝试更新至最新版本后再反馈
+
+  - type: textarea
+    id: question
+    attributes:
+      label: "❓ Question / 问题描述"
+      placeholder: |
+        Describe your question
+        请描述你的问题
+    validations:
+      required: true
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: "🔍 What I've Tried / 已尝试的方案"
+      placeholder: |
+        What have you tried
+        你已经尝试了什么
+    validations:
+      required: false
+
+  - type: textarea
+    id: config
+    attributes:
+      label: "📄 Config / 配置片段"
+      placeholder: |
+        Paste the relevant config fragment or drag files here to upload (redact every channel secret, token and webhook URL)
+        请粘贴相关配置片段或拖动文件到此输入框以上传(请脱敏所有渠道密钥、token 与 webhook 地址)
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: "📋 Logs / 日志输出"
+      render: shell
+      placeholder: |
+        Paste relevant logs or drag files here to upload
+        请粘贴相关日志或拖动文件到此输入框以上传
+    validations:
+      required: false

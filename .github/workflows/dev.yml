@@ -1,0 +1,152 @@
+name: Build Dev
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # ===== Windows =====
+          - os: windows-latest
+            goos: windows
+            goarch: amd64
+            platform: windows-amd64
+            ext: .exe
+
+          # ===== Linux =====
+          - os: ubuntu-latest
+            goos: linux
+            goarch: amd64
+            platform: linux-amd64
+            ext: ""
+
+          - os: ubuntu-22.04
+            goos: linux
+            goarch: arm64
+            platform: linux-arm64
+            ext: ""
+
+          - os: ubuntu-22.04
+            goos: linux
+            goarch: arm
+            goarm: "7"
+            platform: linux-armv7
+            ext: ""
+
+          # ===== macOS =====
+          - os: macos-15-intel
+            goos: darwin
+            goarch: amd64
+            platform: darwin-amd64
+            ext: ""
+
+          - os: macos-latest
+            goos: darwin
+            goarch: arm64
+            platform: darwin-arm64
+            ext: ""
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: src/go.mod
+
+      # 检查类步骤显式声明 bash：Windows 运行器的默认 shell 是 PowerShell，而这几步写的是 bash 语法
+      # The check steps declare bash explicitly: the default shell of a Windows runner is PowerShell while these steps are written in bash syntax
+      - name: Format check
+        shell: bash
+        working-directory: src
+        run: |
+          unformatted=$(gofmt -l .)
+          if [ -n "$unformatted" ]; then
+            echo "gofmt reported unformatted files:"
+            echo "$unformatted"
+            exit 1
+          fi
+
+      - name: Vet
+        shell: bash
+        working-directory: src
+        run: go vet ./...
+
+      - name: Test
+        shell: bash
+        working-directory: src
+        run: go test ./...
+
+      # 竞态检测需要 CGO 与 C 工具链，Windows/macOS 运行器不保证具备，故只在 Linux 上执行
+      # Race detection needs CGO and a C toolchain, which Windows/macOS runners do not guarantee, so it runs on Linux only
+      - name: Test (race)
+        if: runner.os == 'Linux'
+        shell: bash
+        working-directory: src
+        run: go test -race ./...
+
+      - name: Compute version
+        id: version
+        shell: bash
+        run: |
+          RAW=$(git describe --tags --always --long 2>/dev/null || echo "")
+          if echo "$RAW" | grep -Eq '^.+-[0-9]+-g[a-f0-9]+$'; then
+            VER=$(echo "$RAW" | sed -E 's/^(.+)-([0-9]+)-(g[a-f0-9]+)$/\1-beta\2-\3/')
+          elif echo "$RAW" | grep -Eq '^[a-f0-9]+$'; then
+            VER="0.0.0-beta0-g${RAW}"
+          else
+            VER="$RAW"
+          fi
+          echo "VERSION=${VER}" >> "$GITHUB_OUTPUT"
+          echo "Computed version: ${VER}"
+
+      - name: Build
+        shell: bash
+        run: |
+          export CGO_ENABLED=0
+          export GOOS=${{ matrix.goos }}
+          export GOARCH=${{ matrix.goarch }}
+          [ -n "${{ matrix.goarm }}" ] && export GOARM=${{ matrix.goarm }}
+
+          cd src
+          go build \
+            -ldflags "-s -w -X main.version=${{ steps.version.outputs.VERSION }}" \
+            -o ../dist/taskpush${{ matrix.ext }} \
+            ./cmd/taskpush
+
+      - name: Rename binary
+        shell: bash
+        run: |
+          mkdir -p dist
+          mv dist/taskpush${{ matrix.ext }} \
+             dist/TaskPush-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}${{ matrix.ext }}
+
+      - name: Package (Linux / macOS)
+        if: runner.os != 'Windows'
+        run: |
+          cd dist
+          zip ../TaskPush-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}.zip \
+            TaskPush-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}${{ matrix.ext }}
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Compress-Archive -Path "dist\TaskPush-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}${{ matrix.ext }}" `
+            -DestinationPath "TaskPush-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}.zip"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TaskPush-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}
+          path: TaskPush-${{ steps.version.outputs.VERSION }}-${{ matrix.platform }}.zip

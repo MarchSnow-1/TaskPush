@@ -1,0 +1,30 @@
+name: "📖 Documentation / 文档相关"
+description: "Report a doc issue or suggest improvements / 报告文档问题或提出改进建议"
+title: "[Docs] "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > 📖 Before submitting feedback or suggestions, please check the [documentation](https://github.com/MarchSnow-1/TaskPush/blob/main/docs/usage.md) or [Issues](https://github.com/MarchSnow-1/TaskPush/issues) first to see if a similar topic already exists.
+        > 🔄 If you encounter an issue, please try updating to the latest version before reporting.
+        >
+        > 📖 在反馈问题或提出建议前，请先检查 [文档](https://github.com/MarchSnow-1/TaskPush/blob/main/docs/usage_zh-CN.md) 或 [Issues](https://github.com/MarchSnow-1/TaskPush/issues) 中是否存在相关内容
+        > 🔄 如遇问题，请先尝试更新至最新版本后再反馈
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: "📖 Documentation Issue / 文档问题"
+      placeholder: |
+        Describe the doc issue or suggestion
+        请描述文档的问题或改进建议
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: "💬 Additional Context / 其他补充"
+    validations:
+      required: false

@@ -1,0 +1,115 @@
+name: "🐛 Bug Report / 上报 Bug"
+description: "Report a bug / 报告 Bug"
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > 📖 Before submitting feedback or suggestions, please check the [documentation](https://github.com/MarchSnow-1/TaskPush/blob/main/docs/usage.md) or [Issues](https://github.com/MarchSnow-1/TaskPush/issues) first to see if a similar topic already exists.
+        > 🔄 If you encounter an issue, please try updating to the latest version before reporting.
+        >
+        > 📖 在反馈问题或提出建议前，请先检查 [文档](https://github.com/MarchSnow-1/TaskPush/blob/main/docs/usage_zh-CN.md) 或 [Issues](https://github.com/MarchSnow-1/TaskPush/issues) 中是否存在相关内容
+        > 🔄 如遇问题，请先尝试更新至最新版本后再反馈
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "🐛 Description / 描述"
+      placeholder: |
+        Describe the bug
+        请描述你遇到的 Bug
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "🔄 Steps to Reproduce / 复现步骤"
+      placeholder: |
+        How to reproduce
+        如何复现此问题
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "✅ Expected Behavior / 期望行为"
+      placeholder: |
+        What you expected
+        你期望发生什么
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: "❌ Actual Behavior / 实际行为"
+      placeholder: |
+        What actually happened
+        实际发生了什么
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: "🧩 Affected Area / 问题范围"
+      options:
+        - CLI (参数解析 / 命令分发 / 退出码 / 帮助)
+        - Config (加载 / 校验 / ${VAR} 展开)
+        - Template ({{var}} / {{if}} / {{range}} / 默认值)
+        - Channel (某个渠道的字段或请求构造)
+        - Notify (并发 / 重试 / 超时 / 预览)
+        - State (start / finish 计时文件)
+        - i18n (中英文案)
+        - Docs (文档)
+        - Other / 其他
+    validations:
+      required: true
+
+  - type: input
+    id: channel
+    attributes:
+      label: "🔌 Channel Type / 渠道类型"
+      description: "Only when the affected area is Channel or Notify / 仅当问题范围是 Channel 或 Notify 时填写"
+      placeholder: "e.g. webhook, bark, telegram, discord, ntfy, gotify, serverchan, dingtalk, wecom"
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: "🏗️ Environment / 运行环境"
+      description: "OS, architecture and the output of `taskpush version` / 操作系统、架构与 `taskpush version` 的输出"
+      placeholder: |
+        e.g. Windows 11 amd64, taskpush 1.2.0
+        例如 Windows 11 amd64, taskpush 1.2.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: "📄 Config / 配置片段"
+      placeholder: |
+        Paste the relevant config fragment or drag files here to upload (redact every channel secret, token and webhook URL)
+        请粘贴相关配置片段或拖动文件到此输入框以上传(请脱敏所有渠道密钥、token 与 webhook 地址)
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: "📋 Logs / 日志输出"
+      render: shell
+      placeholder: |
+        Paste relevant logs or drag files here to upload
+        请粘贴相关日志或拖动文件到此输入框以上传
+    validations:
+      required: false

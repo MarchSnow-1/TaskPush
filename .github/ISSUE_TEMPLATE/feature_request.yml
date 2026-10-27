@@ -1,0 +1,52 @@
+name: "💡 Feature Request / 功能请求"
+description: "Suggest a new feature / 提出新功能建议"
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > 📖 Before submitting feedback or suggestions, please check the [documentation](https://github.com/MarchSnow-1/TaskPush/blob/main/docs/usage.md) or [Issues](https://github.com/MarchSnow-1/TaskPush/issues) first to see if a similar topic already exists.
+        > 🔄 If you encounter an issue, please try updating to the latest version before reporting.
+        >
+        > 📖 在反馈问题或提出建议前，请先检查 [文档](https://github.com/MarchSnow-1/TaskPush/blob/main/docs/usage_zh-CN.md) 或 [Issues](https://github.com/MarchSnow-1/TaskPush/issues) 中是否存在相关内容
+        > 🔄 如遇问题，请先尝试更新至最新版本后再反馈
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "💡 Description / 功能描述"
+      placeholder: |
+        Describe the feature you'd like
+        请描述你想要的功能
+    validations:
+      required: true
+
+  - type: textarea
+    id: usecase
+    attributes:
+      label: "🎯 Use Case / 使用场景"
+      placeholder: |
+        Why do you need this
+        为什么需要这个功能
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "🔢 Priority / 优先级自评"
+      default: 1
+      options:
+        - "Low / 低"
+        - "Medium / 中"
+        - "High / 高"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: "📝 Additional Context / 其他补充"
+    validations:
+      required: false
