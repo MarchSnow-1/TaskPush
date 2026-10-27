@@ -1,0 +1,83 @@
+package bark
+
+/*
+bark 渠道的渲染层: settings 字段的模板渲染, 渲染后请求体字段的写入, 以及模板错误与警告的字段路径改写
+出网发送在 channel.go, 打码在 mask.go, 配置结构在 settings.go
+
+The rendering layer of the bark channel: template rendering of the settings fields, writing the
+rendered values into the request-body fields, and rewriting the field path of a template error or
+warning
+Sending sits in channel.go, masking in mask.go, and the configuration shapes in settings.go
+*/
+
+import (
+	"errors"
+
+	"github.com/MarchSnow-1/TaskPush/internal/apperr"
+	"github.com/MarchSnow-1/TaskPush/internal/template"
+)
+
+// renderField 渲染一个 settings 字符串字段
+// 模板错误与告警里的 Path 先被改写为该字段路径, 因为模板引擎只填占位路径
+//
+// renderField renders one settings string field
+// The Path inside a template error or warning is rewritten to this field path first, because the
+// template engine only fills a placeholder path
+func renderField(value, field string, vars *template.Vars, mode template.Mode) (string, []apperr.Problem, error) {
+	out, warns, err := template.RenderWithMode(value, vars, mode)
+	if err != nil {
+		rewritePath(err, field)
+		return "", nil, err
+	}
+	for i := range warns {
+		setPath(&warns[i], field)
+	}
+	return out, warns, nil
+}
+
+// setOptional 把渲染后的可选字段写进请求体, 字段名由调用方给出
+//
+// setOptional writes a rendered optional field into the request body under the name the caller gives
+func setOptional(payload *barkPayload, key, value string) {
+	switch key {
+	case "subtitle":
+		payload.Subtitle = value
+	case "group":
+		payload.Group = value
+	case "level":
+		payload.Level = value
+	case "sound":
+		payload.Sound = value
+	case "icon":
+		payload.Icon = value
+	case "image":
+		payload.Image = value
+	case "clickUrl":
+		payload.ClickURL = value
+	case "copy":
+		payload.Copy = value
+	}
+}
+
+// rewritePath 把 err 链上的模板 Problem 的 Path 改写为字段路径
+//
+// rewritePath rewrites the Path of the template Problem on the err chain into a field path
+func rewritePath(err error, field string) {
+	var prob *apperr.Problem
+	if errors.As(err, &prob) {
+		setPath(prob, field)
+	}
+}
+
+// setPath 覆写 Problem.Data 里的 Path, Data 为 nil 时先建表
+//
+// setPath overwrites Path inside Problem.Data, creating the map when it is nil
+func setPath(prob *apperr.Problem, field string) {
+	if prob == nil {
+		return
+	}
+	if prob.Data == nil {
+		prob.Data = map[string]any{}
+	}
+	prob.Data["Path"] = field
+}
